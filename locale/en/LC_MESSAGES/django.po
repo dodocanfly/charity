@@ -1,0 +1,252 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-12 23:44+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/users/admin.py:18
+msgid "Uprawnienia"
+msgstr ""
+
+#: apps/users/admin.py:19
+msgid "Dodatkowe"
+msgstr ""
+
+#: apps/users/forms.py:13 apps/users/forms.py:62
+msgid "Imię"
+msgstr ""
+
+#: apps/users/forms.py:14 apps/users/forms.py:63
+msgid "Nazwisko"
+msgstr ""
+
+#: apps/users/forms.py:15 apps/users/forms.py:44
+msgid "Email"
+msgstr ""
+
+#: apps/users/forms.py:16 apps/users/forms.py:45
+msgid "Hasło"
+msgstr ""
+
+#: apps/users/forms.py:17
+msgid "Powtórz hasło"
+msgstr ""
+
+#: apps/users/forms.py:21
+msgid "Podane hasła nie są takie same."
+msgstr ""
+
+#: apps/users/forms.py:26
+msgid "Ten adres email jest już w naszym systemie - użyj innego."
+msgstr ""
+
+#: apps/users/forms.py:56
+msgid "Użytkownik z podanym adresem email nie istnieje."
+msgstr ""
+
+#: apps/users/forms.py:64
+msgid "Miejscowość"
+msgstr ""
+
+#: apps/users/forms.py:74
+msgid "Aktualne hasło"
+msgstr ""
+
+#: apps/users/forms.py:75
+msgid "Nowe hasło"
+msgstr ""
+
+#: apps/users/forms.py:76
+msgid "Powtórz nowe hasło"
+msgstr ""
+
+#: apps/users/managers.py:9
+msgid "Adres e-mail jest wymagany."
+msgstr ""
+
+#: apps/users/managers.py:22
+msgid "Superuser musi mieć ustawioną flagę is_staff=True."
+msgstr ""
+
+#: apps/users/managers.py:24
+msgid "Superuser musi mieć ustawioną flagę is_superuser=True."
+msgstr ""
+
+#: apps/users/models.py:10
+msgid "adres e-mail"
+msgstr ""
+
+#: apps/users/models.py:11
+msgid "imię"
+msgstr ""
+
+#: apps/users/models.py:12
+msgid "nazwisko"
+msgstr ""
+
+#: apps/users/models.py:13
+msgid "miejscowość"
+msgstr ""
+
+#: apps/users/models.py:24
+msgid "użytkownik"
+msgstr ""
+
+#: apps/users/models.py:25
+msgid "użytkownicy"
+msgstr ""
+
+#: apps/users/templates/users/activation_done.html:6
+msgid "Konto aktywowane"
+msgstr ""
+
+#: apps/users/templates/users/activation_done.html:9
+msgid "Twoje konto zostało poprawnie aktywowane."
+msgstr ""
+
+#: apps/users/templates/users/activation_done.html:10
+#: apps/users/templates/users/login.html:6
+#: apps/users/templates/users/login.html:25
+#: apps/users/templates/users/password_reset_complete.html:7
+#: apps/users/templates/users/register_form.html:35
+msgid "Zaloguj się"
+msgstr ""
+
+#: apps/users/templates/users/activation_email.html:4
+#, python-format
+msgid ""
+"\n"
+"Cześć %(user)s,\n"
+"\n"
+"Twoje konto zostało pomyślnie utworzone.\n"
+"Kliknij proszę poniższy link, aby je aktywować:\n"
+"\n"
+"http://%(domain)s%(activate_url)s\n"
+msgstr ""
+
+#: apps/users/templates/users/activation_invalid.html:6
+msgid "Problemy z aktywacją konta"
+msgstr ""
+
+#: apps/users/templates/users/activation_invalid.html:8
+msgid ""
+"Link aktywacyjny jest nieprawidłowy (prawdopodobnie został już wcześniej "
+"użyty)."
+msgstr ""
+
+#: apps/users/templates/users/login.html:20
+msgid "Nie pamiętasz hasła?"
+msgstr ""
+
+#: apps/users/templates/users/login.html:24
+#: apps/users/templates/users/register_form.html:6
+#: apps/users/templates/users/register_form.html:36
+msgid "Załóż konto"
+msgstr ""
+
+#: apps/users/templates/users/password_reset_complete.html:6
+msgid "Hasło zostało zresetowane"
+msgstr ""
+
+#: apps/users/templates/users/password_reset_complete.html:7
+msgid "Twoje nowe hasło zostało poprawnie ustawione."
+msgstr ""
+
+#: apps/users/templates/users/password_reset_confirm.html:6
+msgid "Resetowanie hasła"
+msgstr ""
+
+#: apps/users/templates/users/password_reset_confirm.html:16
+msgid "Zmień moje hasło"
+msgstr ""
+
+#: apps/users/templates/users/password_reset_confirm.html:20
+msgid ""
+"Link do strony resetującej hasło jest nieprawidłowy (prawdopodobnie został "
+"już wcześniej użyty)."
+msgstr ""
+
+#: apps/users/templates/users/password_reset_confirm.html:21
+msgid "Resetuj hasło ponownie"
+msgstr ""
+
+#: apps/users/templates/users/password_reset_done.html:6
+msgid "Sprawdź skrzynkę pocztową"
+msgstr ""
+
+#: apps/users/templates/users/password_reset_done.html:7
+msgid ""
+"Na podany adres email wysłaliśmy instrukcje jak zresetować hasło do konta w "
+"naszym serwisie. Sprawdź swoją skrzynkę pocztową."
+msgstr ""
+
+#: apps/users/templates/users/password_reset_form.html:6
+msgid "Zapomniałeś hasło?"
+msgstr ""
+
+#: apps/users/templates/users/password_reset_form.html:7
+msgid ""
+"Podaj swój adres email, na który wyślemy Ci instrukcję jak zresetować hasło."
+msgstr ""
+
+#: apps/users/templates/users/password_reset_form.html:16
+msgid "Wyślij instrukcję"
+msgstr ""
+
+#: apps/users/templates/users/profile_form.html:6
+msgid "Edytuj profil"
+msgstr ""
+
+#: apps/users/templates/users/profile_form.html:14
+#: apps/users/templates/users/settings_form.html:28
+msgid "Zapisz zmiany"
+msgstr ""
+
+#: apps/users/templates/users/register_done.html:6
+msgid "Konto poprawnie założone"
+msgstr ""
+
+#: apps/users/templates/users/register_done.html:8
+msgid ""
+"Na podany adres wysłany został mail z adresem pozwalającym aktywować konto. "
+"Odczytaj pocztę i przejdź pod link aktywacyjny, a następnie zaloguj się na "
+"nowo utworzone konto."
+msgstr ""
+
+#: apps/users/templates/users/settings_form.html:6
+msgid "Edytuj ustawienia konta"
+msgstr ""
+
+#: apps/users/views.py:36
+msgid "Aktywuj swoje konto"
+msgstr ""
+
+#: apps/users/views.py:99 apps/users/views.py:116
+msgid "Zmiany zostały pomyślnie zapisane."
+msgstr ""
+
+#: apps/users/views.py:102 apps/users/views.py:119
+msgid "Zmiany nie zostały zapisane - popraw poniższe błędy."
+msgstr ""
+
+#: charity/settings.py:105
+msgid "English"
+msgstr ""
+
+#: charity/settings.py:106
+msgid "Polish"
+msgstr ""

@@ -7,13 +7,13 @@ from .managers import CustomUserManager
 
 class CustomUser(AbstractUser):
     username = None
-    email = models.EmailField(max_length=254, verbose_name='adres e-mail', unique=True)
-    first_name = models.CharField(max_length=30, verbose_name='imię')
-    last_name = models.CharField(max_length=150, verbose_name='nazwisko')
-    city = models.CharField(max_length=50, verbose_name='miejscowość', null=True, blank=True)
+    email = models.EmailField(max_length=254, verbose_name=_('adres e-mail'), unique=True)
+    first_name = models.CharField(max_length=30, verbose_name=_('imię'))
+    last_name = models.CharField(max_length=150, verbose_name=_('nazwisko'))
+    city = models.CharField(max_length=50, verbose_name=_('miejscowość'), null=True, blank=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name']
+    REQUIRED_FIELDS = ('first_name', 'last_name')
 
     objects = CustomUserManager()
 

@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+{% load i18n %}
+
+{% block main-content %}
+    <section class="login-page">
+        <h2>{% block title %}{% trans 'Problemy z aktywacją konta' %}{% endblock title %}</h2>
+        <div>
+            <h3>{% trans 'Link aktywacyjny jest nieprawidłowy (prawdopodobnie został już wcześniej użyty).' %}</h3>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends '_base.html' %}
+{% load i18n %}
+
+{% block main-content %}
+    <section class="login-page">
+        <h2>{% block title %}{% trans 'Edytuj profil' %}{% endblock %}</h2>
+        {% include 'messages.html' %}
+        <form method="post">
+            <table>
+                {{ form.as_table }}
+            </table>
+            <div class="form-group form-group--buttons">
+                {% csrf_token %}
+                <button class="btn" type="submit">{% trans 'Zapisz zmiany' %}</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}

@@ -2,13 +2,13 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext_lazy as _
 
-from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .forms import RegistrationForm, CustomUserChangeForm
 from .models import CustomUser
 
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
-    add_form = CustomUserCreationForm
+    add_form = RegistrationForm
     form = CustomUserChangeForm
     model = CustomUser
     list_display = ('email', 'is_staff', 'is_active',)

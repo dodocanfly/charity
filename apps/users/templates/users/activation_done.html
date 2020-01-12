@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+{% load i18n %}
+
+{% block main-content %}
+    <section class="login-page">
+        <h2>{% block title %}{% trans 'Konto aktywowane' %}{% endblock title %}</h2>
+        <div>
+            <h3>
+                {% trans 'Twoje konto zostało poprawnie aktywowane.' %}
+                <a href="{% url 'login' %}">{% trans 'Zaloguj się' %}</a>.
+            </h3>
+        </div>
+    </section>
+{% endblock %}
