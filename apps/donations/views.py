@@ -12,7 +12,7 @@ class HomeView(View):
             'organizations': Donation.objects.aggregate(Count('institution', distinct=True)).get('institution__count'),
         }
         institutions = {
-            1: Institution.objects.filter(type=1).extra(),
+            1: Institution.objects.filter(type=1),
             2: Institution.objects.filter(type=2),
             3: Institution.objects.filter(type=3),
         }
