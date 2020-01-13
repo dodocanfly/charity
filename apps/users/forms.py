@@ -7,6 +7,13 @@ from django.utils.translation import ugettext_lazy as _
 from .models import CustomUser
 
 
+class CustomUserCreationForm(UserCreationForm):
+
+    class Meta:
+        model = CustomUser
+        fields = ('email', 'first_name', 'last_name')
+
+
 class RegistrationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -15,16 +22,6 @@ class RegistrationForm(UserCreationForm):
         self.fields['email'].widget.attrs.update({'placeholder': _('Email'), 'autofocus': False})
         self.fields['password1'].widget.attrs['placeholder'] = _('Hasło')
         self.fields['password2'].widget.attrs['placeholder'] = _('Powtórz hasło')
-
-    def clean_password2(self):
-        if self.cleaned_data['password1'] != self.cleaned_data['password2']:
-            raise forms.ValidationError(_('Podane hasła nie są takie same.'))
-        return self.cleaned_data['password2']
-
-    def clean_email(self):
-        if CustomUser.objects.filter(email=self.cleaned_data['email']).exists():
-            raise forms.ValidationError(_('Ten adres email jest już w naszym systemie - użyj innego.'))
-        return self.cleaned_data['email']
 
     class Meta:
         model = CustomUser

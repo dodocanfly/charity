@@ -22,9 +22,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '^wv%z)g20@308sjflj4t+bk9uh85n0-1b=m3emcd5+aez7n=^r'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = ['charity.dodocanfly.pl', '127.0.0.1']
 
 # Application definition
@@ -113,7 +110,6 @@ LOCALE_PATHS = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/public/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'public')]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -123,14 +119,12 @@ EMAIL_USE_TLS = True
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
-SECURE_SSL_REDIRECT = True
-
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = '/user/login'
 
 try:
-    from charity.local_settings import DATABASES, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, DEFAULT_FROM_EMAIL
+    from charity.local_settings import *
 except ModuleNotFoundError:
     print("Unable to load local_settings.")
     exit(0)

@@ -17,7 +17,7 @@ from .tokens import account_activation_token
 class RegisterView(View):
     def get(self, request):
         if request.user.is_authenticated:
-            return redirect('home')
+            return redirect('profile')
         form = RegistrationForm
         return render(request, 'users/register_form.html', context={'form': form})
 
