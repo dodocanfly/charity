@@ -123,6 +123,8 @@ EMAIL_USE_TLS = True
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
+SECURE_SSL_REDIRECT = True
+
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = '/user/login'
