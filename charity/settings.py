@@ -25,7 +25,7 @@ SECRET_KEY = '^wv%z)g20@308sjflj4t+bk9uh85n0-1b=m3emcd5+aez7n=^r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['charity.dodocanfly.pl', '127.0.0.1']
 
 # Application definition
 
