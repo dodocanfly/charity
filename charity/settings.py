@@ -119,6 +119,7 @@ LOCALE_PATHS = (
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'public')]
+# STATIC_ROOT = '/home/mejbi/workspace/charity/public'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'mail41.mydevil.net'
