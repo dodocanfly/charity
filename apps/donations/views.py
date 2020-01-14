@@ -1,7 +1,9 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum, Count
 from django.shortcuts import render
 from django.views import View
 
+from .forms import DonationForm
 from .models import Donation, InstitutionType
 
 
@@ -18,10 +20,10 @@ class HomeView(View):
         })
 
 
-class FormView(View):
+class FormView(LoginRequiredMixin, View):
     def get(self, request):
-
-        return render(request, 'donations/form.html')
+        form = DonationForm(request=request)
+        return render(request, 'donations/form.html', {'form': form})
 
     def post(self, request):
         import pprint

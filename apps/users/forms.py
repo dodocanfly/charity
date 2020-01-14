@@ -47,22 +47,28 @@ class CustomAuthForm(AuthenticationForm):
 
 
 class CustomPasswordResetForm(PasswordResetForm):
-    def clean(self):
-        cleaned_data = super().clean()
-        if not CustomUser.objects.filter(email=cleaned_data.get('email')).exists():
-            raise ValidationError(_('Użytkownik z podanym adresem email nie istnieje.'))
+    def clean_email(self):
+        if not CustomUser.objects.filter(email=self.cleaned_data['email']).exists():
+            raise ValidationError(_('Użytkownik z podanym adresem email nie istnieje'))
+        return self.cleaned_data['email']
 
 
 class ProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs.update({'placeholder': _('Email'), 'readonly': True})
         self.fields['first_name'].widget.attrs['placeholder'] = _('Imię')
         self.fields['last_name'].widget.attrs['placeholder'] = _('Nazwisko')
         self.fields['city'].widget.attrs['placeholder'] = _('Miejscowość')
 
+    def clean_email(self):
+        if self.cleaned_data['email'] != CustomUser.objects.get(pk=self.instance.id).email:
+            raise ValidationError(_('Adres e-mail zmienić może tylko administrator'))
+        return self.cleaned_data['email']
+
     class Meta:
         model = CustomUser
-        fields = ('first_name', 'last_name', 'city')
+        fields = ('email', 'first_name', 'last_name', 'city')
 
 
 class SettingsForm(PasswordChangeForm):
