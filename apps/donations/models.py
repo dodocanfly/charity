@@ -15,15 +15,24 @@ class Category(models.Model):
         verbose_name_plural = _('Kategorie')
 
 
+class InstitutionType(models.Model):
+    name = models.CharField(_('Rodzaj instytucji'), max_length=30)
+    description = models.TextField(_('opis'), max_length=1000, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'rodzaj instytucji'
+        verbose_name_plural = 'rodzaj instytucji'
+
+
 class Institution(models.Model):
-    TYPE_CHOICES = (
-        (1, _('fundacja')),
-        (2, _('organizacja pozarządowa')),
-        (3, _('zbiórka lokalna')),
-    )
     name = models.CharField(_('nazwa'), max_length=100)
     description = models.TextField(_('opis'), max_length=1000, null=True, blank=True)
-    type = models.SmallIntegerField(_('rodzaj'), choices=TYPE_CHOICES, default=1)
+    type = models.ForeignKey(InstitutionType, on_delete=models.PROTECT, related_name='institutions', default=1,
+                             verbose_name=_('rodzaj instytucji'))
     categories = models.ManyToManyField(Category, related_name='institutions', verbose_name=_('kategorie'))
 
     @property

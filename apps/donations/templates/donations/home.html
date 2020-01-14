@@ -81,98 +81,41 @@
         <h2>Komu pomagamy?</h2>
 
         <ul class="help--buttons">
-            <li data-id="1"><a href="#" class="btn btn--without-border active">Fundacjom</a></li>
-            <li data-id="2"><a href="#" class="btn btn--without-border">Organizacjom pozarządowym</a></li>
-            <li data-id="3"><a href="#" class="btn btn--without-border">Lokalnym zbiórkom</a></li>
+            {% for type in institution_types %}
+                <li data-id="{{ type.id }}">
+                    <a href="#" class="btn btn--without-border{% if forloop.counter is 1 %} active{% endif %}">
+                        {{ type.name }}
+                    </a>
+                </li>
+            {% endfor %}
         </ul>
 
-        <!-- SLIDE 1 -->
-        <div class="help--slides active" data-id="1">
-            <p>
-                W naszej bazie znajdziesz listę zweryfikowanych Fundacji,
-                z którymi współpracujemy. Możesz sprawdzić czym
-                się zajmują, komu pomagają i czego potrzebują.
-            </p>
+        {% for type in institution_types %}
+            <!-- SLIDE {{ type.id }} -->
+            <div class="help--slides{% if forloop.counter is 1 %} active{% endif %}" data-id="{{ type.id }}">
+                <p>{{ type.description }}</p>
+                <ul class="help--slides-items">
+                    {% for institution in type.institutions.all %}
+                        <li>
+                            <div class="col">
+                                <div class="title">{{ institution.name }}</div>
+                                <div class="subtitle">{{ institution.short_descr }}</div>
+                            </div>
+                            <div class="col">
+                                <div class="text">{{ institution.categories_str }}</div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <!-- Pagination
+                <ul class="help--slides-pagination">
+                  <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
+                  <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
+                  <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>
+                </ul>
+                -->
+            </div>
+        {% endfor %}
 
-            <ul class="help--slides-items">
-                {% for inst in institutions.1 %}
-                    <li>
-                        <div class="col">
-                            <div class="title">{{ inst.name }}</div>
-                            <div class="subtitle">{{ inst.short_descr }}</div>
-                        </div>
-                        <div class="col">
-                            <div class="text">{{ inst.categories_str }}</div>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-            <!-- Pagination
-            <ul class="help--slides-pagination">
-              <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>
-            </ul>
-            -->
-        </div>
-
-
-        <!-- SLIDE 2 -->
-        <div class="help--slides" data-id="2">
-            <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic officiis mollitia dolor, neque aspernatur
-                accusamus debitis. Ducimus, officia. Quia, sunt illum! Non iste placeat ab ipsum alias
-                quos suscipit corporis!
-            </p>
-            <ul class="help--slides-items">
-                {% for inst in institutions.2 %}
-                    <li>
-                        <div class="col">
-                            <div class="title">{{ inst.name }}</div>
-                            <div class="subtitle">{{ inst.short_descr }}</div>
-                        </div>
-                        <div class="col">
-                            <div class="text">{{ inst.categories_str }}</div>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-
-            <!-- Pagination
-            <ul class="help--slides-pagination">
-              <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="4">4</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="5">5</a></li>
-            </ul>
-            -->
-        </div>
-
-        <!-- SLIDE 3 -->
-        <div class="help--slides" data-id="3">
-            <p>Lorem ipsum dolor sit amet, his ocurreret persequeris ea, ad utinam laudem duo. Verterem adipisci
-                partiendo eos ne, ea his reque quaeque recteque, ne quo lobortis intellegam.</p>
-            <ul class="help--slides-items">
-                {% for inst in institutions.3 %}
-                    <li>
-                        <div class="col">
-                            <div class="title">{{ inst.name }}</div>
-                            <div class="subtitle">{{ inst.short_descr }}</div>
-                        </div>
-                        <div class="col">
-                            <div class="text">{{ inst.categories_str }}</div>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-
-            <!-- Pagination
-            <ul class="help--slides-pagination">
-              <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
-            </ul>
-            -->
-        </div>
     </section>
 {% endblock %}
