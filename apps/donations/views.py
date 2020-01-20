@@ -1,8 +1,12 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db import DatabaseError
 from django.db.models import Sum, Count
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
+from django.utils.translation import ugettext_lazy as _
 
 from .forms import DonationForm
 from .models import Donation, InstitutionType
@@ -39,3 +43,39 @@ class FormView(LoginRequiredMixin, View):
 class FormConfirmView(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, 'donations/form-confirm.html')
+
+
+class MyDonationsView(LoginRequiredMixin, View):
+    def get(self, request):
+        if request.GET.get('odbierz'):
+            self.change_taken_status(request)
+            return redirect(reverse('my-donations'))
+
+        donations = Donation.objects.filter(user=request.user).order_by('-pick_up_date', 'institution__name')
+        page = request.GET.get('page', 1)
+        paginator = Paginator(donations, 5)
+        try:
+            donations = paginator.page(page)
+        except PageNotAnInteger:
+            donations = paginator.page(1)
+        except EmptyPage:
+            donations = paginator.page(paginator.num_pages)
+
+        return render(request, 'donations/my-donations.html', {
+            'donations': donations,
+        })
+
+    @staticmethod
+    def donation_exists(request):
+        return Donation.objects.filter(pk=request.GET.get('odbierz'), user=request.user, is_taken=False).exists()
+
+    def change_taken_status(self, request):
+        if self.donation_exists(request):
+            try:
+                Donation.objects.filter(pk=request.GET.get('odbierz')).update(is_taken=True)
+            except DatabaseError:
+                messages.error(request, _('Nie udało się zapisać zmian'))
+            else:
+                messages.success(request, _('Zmiany zapisane'))
+        else:
+            messages.error(request, _('Nie udało się znaleźć żądanej darowizny'))

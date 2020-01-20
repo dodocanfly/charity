@@ -1,0 +1,63 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Moje darowizny{% endblock %}
+
+{% block aheader-class %} class="header--form-page"{% endblock %}
+
+{% block main-content %}
+    <div class="container">
+        <h2>Lista moich darowizn</h2>
+        {% include 'messages.html' %}
+        <div class="tabwrap">
+            <table>
+                <tr>
+                    <th>data odbioru</th>
+                    <th>organizacja</th>
+                    <th>kategorie</th>
+                    <th>liczba worków</th>
+                    <th>odebrane?</th>
+                </tr>
+                {% for donation in donations %}
+                    <tr{% if donation.is_taken %} class="taken"{% endif %}>
+                        <td>{{ donation.pick_up_date }}</td>
+                        <td>{{ donation.institution }}</td>
+                        <td>{{ donation.categories_str }}</td>
+                        <td>{{ donation.quantity }}</td>
+                        <td>
+                            {% if donation.is_taken %}
+                                TAK
+                            {% else %}
+                                NIE<br>
+                                (<a href="{% url 'my-donations' %}?odbierz={{ donation.id }}">odbierz</a>)
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr class="pagin">
+                <td colspan="5">
+            {% if donations.has_other_pages %}
+                <ul class="pagination">
+                    {% if donations.has_previous %}
+                        <li><a href="?page={{ donations.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                        <li class="active"><a href="?page={{ donations.number }}">&laquo;</a></li>
+                    {% endif %}
+                    {% for i in donations.paginator.page_range %}
+                            <li{% if donations.number == i %} class="active"{% endif %}><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endfor %}
+                    {% if donations.has_next %}
+                        <li><a href="?page={{ donations.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="active"><a href="?page={{ donations.number }}">&raquo;</a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+</td>
+                </tr>
+            </table>
+
+
+        </div>
+    </div>
+{% endblock %}

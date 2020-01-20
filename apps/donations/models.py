@@ -66,6 +66,11 @@ class Donation(models.Model):
     pick_up_comment = models.TextField(_('uwagi'), max_length=1000)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name='donations',
                              verbose_name=_('darczyńca'))
+    is_taken = models.BooleanField(default=False)
+
+    @property
+    def categories_str(self):
+        return ' / '.join(self.categories.values_list('name', flat=True))
 
     def __str__(self):
         return f'{self.institution.name} - {self.pick_up_date} ({self.pick_up_comment[:15]}...)'
