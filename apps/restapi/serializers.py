@@ -37,3 +37,9 @@ class DonationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Donation
         fields = ['id', 'quantity', 'institution', 'categories']
+
+
+class InstitutionsInSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Institution
+        fields = ['id', 'name', 'description']

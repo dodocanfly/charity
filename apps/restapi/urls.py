@@ -10,6 +10,7 @@ router.register(r'categories', views.CategoryViewSet)
 router.register(r'institution-types', views.InstitutionTypeViewSet)
 router.register(r'institutions', views.InstitutionViewSet)
 router.register(r'donations', views.DonationViewSet)
+router.register(r'institutions-in', views.InstitutionsInViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

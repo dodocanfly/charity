@@ -80,7 +80,7 @@
                     <div class="form-group form-group--inline">
                         <label>
                             Liczba 60l worków:
-                            <input type="number" name="bags" step="1" min="1"/>
+                            <input type="number" name="quantity" step="1" min="1"/>
                         </label>
                     </div>
 
@@ -95,32 +95,7 @@
                 <div data-step="3">
                     <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <input type="radio" name="organization" value="old"/>
-                            <span class="checkbox radio"></span>
-                            <span class="description">
-                                <div class="title">Fundacja “Bez domu”</div>
-                                <div class="subtitle">
-                                    Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania
-                                </div>
-                            </span>
-                        </label>
-                    </div>
-
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <input type="radio" name="organization" value="old"/>
-                            <span class="checkbox radio"></span>
-                            <span class="description">
-                  <div class="title">Fundacja “Dla dzieci"</div>
-                  <div class="subtitle">
-                    Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji
-                    życiowej.
-                  </div>
-                </span>
-                        </label>
-                    </div>
+                    <div id="inst_box"></div>
 
                     <div class="form-group form-group--buttons">
                         <button type="button" class="btn prev-step">Wstecz</button>
@@ -145,13 +120,13 @@
 
                             <div class="form-group form-group--inline">
                                 <label>
-                                    Kod pocztowy <input type="text" name="postcode"/>
+                                    Kod pocztowy <input type="text" name="zip_code"/>
                                 </label>
                             </div>
 
                             <div class="form-group form-group--inline">
                                 <label>
-                                    Numer telefonu <input type="phone" name="phone"/>
+                                    Numer telefonu <input type="text" name="phone_number"/>
                                 </label>
                             </div>
                         </div>
@@ -159,17 +134,17 @@
                         <div class="form-section--column">
                             <h4>Termin odbioru</h4>
                             <div class="form-group form-group--inline">
-                                <label> Data <input type="date" name="data"/> </label>
+                                <label> Data <input type="date" name="pick_up_date"/> </label>
                             </div>
 
                             <div class="form-group form-group--inline">
-                                <label> Godzina <input type="time" name="time"/> </label>
+                                <label> Godzina <input type="time" name="pick_up_time"/> </label>
                             </div>
 
                             <div class="form-group form-group--inline">
                                 <label>
                                     Uwagi dla kuriera
-                                    <textarea name="more_info" rows="5"></textarea>
+                                    <textarea name="pick_up_comment" rows="5"></textarea>
                                 </label>
                             </div>
                         </div>
@@ -190,16 +165,11 @@
                             <ul>
                                 <li>
                                     <span class="icon icon-bag"></span>
-                                    <span class="summary--text"
-                                    >4 worki ubrań w dobrym stanie dla dzieci</span
-                                    >
+                                    <span class="summary--text">Liczba worków: <span id="sum_quantity">4</span> (<span id="sum_bags_cats"></span>)</span>
                                 </li>
-
                                 <li>
                                     <span class="icon icon-hand"></span>
-                                    <span class="summary--text"
-                                    >Dla fundacji "Mam marzenie" w Warszawie</span
-                                    >
+                                    <span class="summary--text">Dla: <span id="sum_institution"></span></span>
                                 </li>
                             </ul>
                         </div>
@@ -208,19 +178,19 @@
                             <div class="form-section--column">
                                 <h4>Adres odbioru:</h4>
                                 <ul>
-                                    <li>Prosta 51</li>
-                                    <li>Warszawa</li>
-                                    <li>99-098</li>
-                                    <li>123 456 789</li>
+                                    <li id="sum_address">Prosta 51</li>
+                                    <li id="sum_city">Warszawa</li>
+                                    <li id="sum_zip_code">99-098</li>
+                                    <li id="sum_phone_number">123 456 789</li>
                                 </ul>
                             </div>
 
                             <div class="form-section--column">
                                 <h4>Termin odbioru:</h4>
                                 <ul>
-                                    <li>13/12/2018</li>
-                                    <li>15:40</li>
-                                    <li>Brak uwag</li>
+                                    <li id="sum_pick_up_date">13/12/2018</li>
+                                    <li id="sum_pick_up_time">15:40</li>
+                                    <li id="sum_pick_up_comment">Brak uwag</li>
                                 </ul>
                             </div>
                         </div>
@@ -235,4 +205,21 @@
             </form>
         </div>
     </section>
+
+    <div id="inst_tpl" style="display: none;">
+        <div class="form-group form-group--checkbox">
+            <label>
+                <input type="radio" name="institution" value="id">
+                <span class="checkbox radio"></span>
+                <span class="description">
+                    <div class="title">nazwa organizacji</div>
+                    <div class="subtitle">opis organizacji</div>
+                </span>
+            </label>
+        </div>
+        <div class="form-group no-institutions">
+            <h2>Nie ma żadnej instytucji z wybranymi kategoriami.</h2>
+        </div>
+    </div>
+
 {% endblock %}
