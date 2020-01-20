@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum, Count
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 
 from .forms import DonationForm
@@ -26,7 +27,15 @@ class FormView(LoginRequiredMixin, View):
         return render(request, 'donations/form.html', {'form': form})
 
     def post(self, request):
-        import pprint
-        form = pprint.pformat(request.POST)
-        lista = request.POST.getlist('categories')
-        return render(request, 'donations/form.html', {'form': form, 'lista': lista})
+        form = DonationForm(request.POST, request=request)
+        if form.is_valid():
+            donation = form.save()
+            for cat in form.cleaned_data['categories']:
+                donation.categories.add(cat)
+            return redirect(reverse('form-confirm'))
+        return render(request, 'donations/form.html', {'form': form})
+
+
+class FormConfirmView(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'donations/form-confirm.html')
