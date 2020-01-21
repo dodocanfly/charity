@@ -499,4 +499,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    let mailForm = document.querySelector('form.form--contact');
+    mailForm.addEventListener('submit', e => {
+        e.preventDefault();
+        let name = mailForm.querySelector('[name="name"]').value;
+        let surname = mailForm.querySelector('[name="surname"]').value;
+        let message = mailForm.querySelector('[name="message"]').value;
+        sendEmail(name, surname, message);
+    });
+
+    function sendEmail(n, s, m) {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            console.log('this.readyState=', this.readyState);
+            console.log('this.status=', this.status);
+            if (this.readyState == 4 && this.status == 200) {
+                alert(this.responseText);
+            }
+        };
+        xhttp.open('GET', 'wyslij-wiadomosc?name='+n+'&surname='+s+'&message='+m, true);
+        xhttp.send();
+    }
+
+
 });

@@ -1,8 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.mail import send_mail, BadHeaderError
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import DatabaseError
 from django.db.models import Sum, Count
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
@@ -79,3 +81,21 @@ class MyDonationsView(LoginRequiredMixin, View):
                 messages.success(request, _('Zmiany zapisane'))
         else:
             messages.error(request, _('Nie udało się znaleźć żądanej darowizny'))
+
+
+def send_mail_view(request):
+    subject = 'Wiadomość ze strony charity donations'
+    name = request.GET.get('name', 'imię')
+    surname = request.GET.get('surname', 'nazwisko')
+    message = f'Wiadomość od <{name} {surname}>\n'
+    message += request.GET.get('message', '')
+    mail_from = 'info@dodocanfly.pl'
+    mail_to = ['patryk@siatka.org']
+    if message:
+        try:
+            send_mail(subject, message, mail_from, mail_to)
+        except BadHeaderError:
+            return HttpResponse(_('Nie udało się wysłać wiadomości'))
+        return HttpResponse(_('Wiadomość wysłana'))
+    else:
+        return HttpResponse(_('Musisz podać treść wiadomości'))
